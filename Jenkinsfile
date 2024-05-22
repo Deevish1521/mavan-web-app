@@ -1,36 +1,27 @@
 pipeline{
     agent any
     tools {
-        maven "Maven"
+        maven 'Maven' 
     }
     stages{
-        stage("Test-app"){
+        stage("Test-step"){
             steps{
-                
                 sh "mvn test"
             }
-           
+            
         }
-        stage("Build-app"){
+        stage("Build-step"){
             steps{
-                
                 sh "mvn package"
             }
-           
+            
         }
-         stage("Deploye-Test-Env"){
+        stage("Deploye-Test-Env"){
             steps{
                 
-                deploy adapters: [tomcat9(credentialsId: '6351f3a2-f402-4cc1-93a0-27d298e86e9a', path: '', url: 'http://13.232.1.230:8080/')], contextPath: '/app', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'Tomcat-test-Server', path: '', url: 'http://13.201.61.115:8080/')], contextPath: '/app', war: '**/*.war'
             }
-           
-        }
-         stage("Deploye-Prod-Live-Env"){
-            steps{
-                deploy adapters: [tomcat9(credentialsId: '6351f3a2-f402-4cc1-93a0-27d298e86e9a', path: '', url: 'http://13.233.113.74:8080/')], contextPath: '/app', war: '**/*.war'
-               
-            }
-           
+            
         }
     }
     post{
