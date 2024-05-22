@@ -20,7 +20,7 @@ pipeline{
             steps{
                 
                 sshagent(['Tomcat-test-Server_SSH']) {
-                sh 'cp /var/lib/jenkins/workspace/maven-web-app-pipeline/target/maven-web-app.war /var/lib/tomcat10/webapps/app.war
+                sh 'cp /var/lib/jenkins/workspace/maven-web-app-pipeline/target/maven-web-app.war /var/lib/tomcat10/webapps/app.war'
     
             }
             }
