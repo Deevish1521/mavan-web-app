@@ -19,7 +19,10 @@ pipeline{
         stage("Deploye-Test-Env"){
             steps{
                 
-                deploy adapters: [tomcat10(credentialsId: 'Tomcat-test-Server', path: '', url: 'http://13.201.61.115:8080')], contextPath: '/apps', war: '**/*.war'
+                sshagent(['Tomcat-test-Server_SSH']) {
+                sh 'cp /var/lib/jenkins/workspace/maven-web-app-pipeline/target/maven-web-app.war /var/lib/tomcat10/webapps/app.war
+    
+            }
             }
             
         }
