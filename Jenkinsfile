@@ -4,25 +4,17 @@ pipeline{
         maven 'Maven' 
     }
     stages{
-        stage("Test-step"){
+        stage("App-Test"){
             steps{
-                sh "mvn test"
+                // maven test
+                sh 'mvn test'
             }
             
         }
-        stage("Build-step"){
+        stage("App-Build"){
             steps{
-                sh "mvn package"
-            }
-            
-        }
-        stage("Deploye-Test-Env"){
-            steps{
-                
-                sshagent(['Tomcat-test-Server_SSH']) {
-                sh 'cp /var/lib/jenkins/workspace/maven-web-app-pipeline/target/maven-web-app.war /var/lib/tomcat10/webapps/app.war'
-    
-            }
+                // maven Package
+                sh 'mvn clean package'
             }
             
         }
