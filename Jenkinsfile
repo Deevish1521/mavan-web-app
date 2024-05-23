@@ -22,7 +22,7 @@ pipeline{
             steps{
                 // copy war file
                 sshagent(['deploy_user']) {
-                sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/test/target ubuntu@13.233.133.112:/var/lib/tomcat10/webapps/app.war'
+                sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/test/target/maven-web-app.war ubuntu@13.233.133.112:/var/lib/tomcat10/webapps/app.war'
 }
             }
             
