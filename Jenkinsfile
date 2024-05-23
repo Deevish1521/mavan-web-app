@@ -18,6 +18,15 @@ pipeline{
             }
             
         }
+        stage("app-deploye-test-env"){
+            steps{
+                // copy war file
+                sshagent(['deploy_user']) {
+                sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/test/target ubuntu@13.233.133.112:/var/lib/tomcat10/webapps/app.war'
+}
+            }
+            
+        }
     }
     post{
         always{
